@@ -1,0 +1,1 @@
+{"dependencies":[["dotenv-deployment",["~> 0.0.2"]],["dotenv",["~> 0.9"]],["vagrant-env",["= 0.0.3"]],["vagrant-proxyconf",["= 2.0.10"]],["vagrant-reload",["= 0.0.1"]]],"checksum":"e81a5b125d9276be05f92d35b3e1b85b5c6bb0f30d70f73518e8c9d8184a90be","vagrant_version":"2.3.7"}

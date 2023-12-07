@@ -1,0 +1,61 @@
+
+# #############################################################################################
+#     COMPACTACION AUTOMATICA DE TABLAS + RECONSTRUCCION DE LOS INDICES DE DICHAS TABLAS
+# #############################################################################################
+
+ - Este directorio contiene las herrameintas para realizar la compactacion automatica de las tablas
+ y la reconstruccion de los indices de dichas tablas.
+ 
+ - El metodo que se usa es un "ALTER TABLE MOVE" sobre el mismo tablespace, por lo que obviamente,
+ es necesario tener espacio libre en dicho tablespace. No se usa la clausula ONLINE porque este script
+ fue creado antes de que existiera. Esta pendiente hacerle una actualizacion importante para incluir
+ esa y algunas otras mejoras.
+ 
+
+ - Las tablas sobre las que se quiere realizar la compactacion deben introducirse en el fichero 
+   llamado "lista_tablas.txt".
+
+
+ ** Estos son los ficheros del proyecto
+ -----------------------------------------
+
+ compactar_tablas_e_indices.sh
+
+    Este es el script que realiza todas las acciones, incluyendo paso de estadisticas para
+    actualizar los datos tras la compactacion. Saca un informe ANTES y otro DESPUES
+
+ lista_tablas_NOMBREBBDD.txt
+
+    Este es el fichero donde se introducen la lista de tablas que se quieren compactar
+
+ generar_lista_objetos_fragmentados.sh
+
+    Genera una lista rapida de objetos fragmentados
+
+
+ GenerarSQL-solo-compactar_tablas_e_indices.sh
+
+    Realiza las mismas acciones que el script "compactar_tablas_e_indices.sh" PERO no ejecuta las
+    acciones. En su lugar, genera las ordenes SQL pero no las ejecuta.
+
+
+# ############################################################################################
+
+
+
+
+
+
+-rwxr-xr-x  1 oracle oinstall  11K Jul 31  2019 generar_lista_objetos_fragmentados.sh
+-rw-r--r--  1 oracle oinstall 3.3K Aug  2 09:55 lista_tablas.txt
+-rwxr-xr-x  1 oracle oinstall  15K Aug  2 10:20 compactar_tablas_e_indices.sh
+drwxr-xr-x  2 oracle oinstall  28K Aug  3 19:26 tmp
+drwxr-xr-x  5 oracle oinstall  26K Aug  3 19:27 resultados
+drwxr-xr-x  3 oracle oinstall  98K Aug  8 08:34 logs
+drwxr-xr-x 80 oracle oinstall  36K Jan 31 08:10 ..
+-rwxr-xr-x  1 oracle oinstall  15K Jan 31 09:19 GenerarSQL-solo-compactar_tablas_e_indices.sh
+drwxr-xr-x  6 oracle oinstall 2.0K Jan 31 09:20 backups
+
+
+
+
