@@ -10,9 +10,10 @@ export EF=${WD}/entorno.cfg         # EF = EnvFile
 
 [[ ! -d ${WD} ]] && mkdir -p ${WD}
 [[ ! -d ${TD} ]] && mkdir -p ${TD}
+# Inicialmente hice este script para ejecutar bajo demanda. Dejo este bloque para esos casos 
+# aunque es un caso que dificilmente se producira en un despliegue.
 [[ -r ${EF} ]] && {
     echo -e "\nOUCH!!\nParece que el fichero de entorno ya existe en este usuario:\n\t${EF}\n"
-    
     while true; do
         read -p "Quieres sobreescribirlo o cancelar??[S]obreescribir o [C]ancelar"
         case $SC in
@@ -144,7 +145,7 @@ alias dbone='. $HOME/configuracion/dbone.cfg'
 # Alias del wrapper de readline ;-)
 alias sqlplus='rlwrap sqlplus'
 alias rman='rlwrap rman'
-alias dgmgrl='dgmgrl rman'
+alias dgmgrl='rlwrap dgmgrl'
 
 
 export OH=$ORACLE_HOME
@@ -187,6 +188,9 @@ export ORACLE_SID=DBONE
 export trazas=/opt/oracle/diag/rdbms/dbone/DBONE/trace
 EOF
 
+# Actualizamos el glogin.sql
+cp /vagrant/DBA_SCRIPTS/glogin.sql /opt/oracle/product/19c/dbhome_1/sqlplus/admin
 
 grep -P '^\.\s\$HOME/configuracion/entorno\.cfg' $HOME/.bashrc > /dev/null 2>&1
 [[ $? -ne 0 ]] && echo -e "\n# Cargamos el entorno de DBA\n. $HOME/configuracion/entorno.cfg" >> $HOME/.bashrc
+
